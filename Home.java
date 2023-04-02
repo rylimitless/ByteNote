@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Home extends JFrame{
+    
     public Home(){
         super("ByteNote");
         setMinimumSize(new Dimension(600, 400));
