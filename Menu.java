@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Menu{
     private JMenuBar menuBar = new JMenuBar();
@@ -21,18 +23,21 @@ public class Menu{
     private void createFileMenu(){
 
         // final JMenuItem newFile = new JMenuItem("New");
-        final  JMenuItem newNote = new JMenuItem("New Note");
+        final JMenuItem newNote = new JMenuItem("New Note");
+        final JMenuItem closeNote = new JMenuItem("Close Note");
         final  JMenuItem openNote = new JMenuItem("Open Note ");
         final JMenuItem  openFolder = new JMenuItem("Open Folder");
         final JMenuItem  closeFolder = new JMenuItem("Close Folder");
         final JMenuItem  deleteNote = new JMenuItem("Delete Note");
-
         final  JMenuItem saveFile = new JMenuItem("Save");
         
         fileMenu.add(newNote);
         fileMenu.addSeparator();
 
         fileMenu.add(openNote);
+        fileMenu.addSeparator();
+
+        fileMenu.add(closeNote);
         fileMenu.addSeparator();
 
         fileMenu.add(saveFile);
@@ -70,18 +75,41 @@ public class Menu{
         editMenu.addSeparator();
 
         editMenu.add(paste);
-        
+
         menuBar.add(editMenu);
 
     }
 
     private void createViewMenu(){
 
+        final JMenuItem toggleView = new JMenuItem("Toggle View");
+        final JMenuItem sortByName = new JMenuItem("Sort By Name");
+        final JMenuItem sortByDate = new JMenuItem("Sort By Date Modified");
+        final JMenuItem darkMode = new JMenuItem("Dark Mode");
+
+        viewMenu.add(toggleView);
+        viewMenu.addSeparator();
+
+        viewMenu.add(sortByName);
+        viewMenu.addSeparator();
+
+        viewMenu.add(sortByDate);
+        viewMenu.addSeparator();
+
+        viewMenu.add(darkMode);
+
         menuBar.add(viewMenu);
     }
 
     private void createHelpMenu(){
 
+        JMenuItem help = new JMenuItem("Help");
+        JMenuItem about = new JMenuItem("About");
+
+        helpMenu.add(help);
+        helpMenu.addSeparator();
+
+        helpMenu.add(about);
         menuBar.add(helpMenu);
 
     }
@@ -90,5 +118,5 @@ public class Menu{
         return menuBar;
     }
 
-}
 
+}
