@@ -23,13 +23,13 @@ public class Menu{
     private void createFileMenu(){
 
         // final JMenuItem newFile = new JMenuItem("New");
-        final JMenuItem newNote = new JMenuItem("New Note");
+        final JMenuItem newNote = new JMenuItem("New Note   Ctrl+N");
         final JMenuItem closeNote = new JMenuItem("Close Note");
         final  JMenuItem openNote = new JMenuItem("Open Note ");
-        final JMenuItem  openFolder = new JMenuItem("Open Folder");
-        final JMenuItem  closeFolder = new JMenuItem("Close Folder");
-        final JMenuItem  deleteNote = new JMenuItem("Delete Note");
-        final  JMenuItem saveFile = new JMenuItem("Save");
+        final JMenuItem  openFolder = new JMenuItem("Open Folder   Ctrl+O");
+        final JMenuItem  closeFolder = new JMenuItem("Close Folder   Ctrl+W");
+        final JMenuItem  deleteNote = new JMenuItem("Delete Note      Ctrl+D");
+        final  JMenuItem saveFile = new JMenuItem("Save   Ctrl+S");
         
         fileMenu.add(newNote);
         fileMenu.addSeparator();

@@ -24,7 +24,7 @@ abstract class Page extends JPanel implements PageInterface{
     public void render() {
         if (!isRendered) {
             isRendered = true;
-            renderPage();
+            //renderPage();
         }
     }
 
@@ -42,7 +42,7 @@ abstract class Page extends JPanel implements PageInterface{
         }
     }
 
-    protected abstract void renderPage();
-    
+    // protected abstract void renderPage();
+
 
 }
