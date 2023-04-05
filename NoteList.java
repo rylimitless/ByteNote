@@ -16,6 +16,10 @@ public class NoteList {
         prevNotes.push(note);
     }
 
+    public int size(){
+        return notes.size();
+    }
+    
     public void removeNote(Note note){
         notes.remove(note);
     }
@@ -25,7 +29,8 @@ public class NoteList {
     }
 
     public Note getTopNote(){
-        return prevNotes.getFirst();
+        // return prevNotes.getFirst();
+        return prevNotes.peek();
     }
 
 }

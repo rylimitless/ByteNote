@@ -13,13 +13,13 @@ public class Home extends JFrame{
     private ArrayList<Page> prevPages;
     private NoteList noteList;
 
-    public Home(Home home , NoteList noteList){
+    public Home(){
         super("ByteNote");
         setMinimumSize(new Dimension(800, 500));
         setSize(800, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menuBar = new Menu();
-        this.noteList = noteList;
+        this.noteList = new NoteList();
         AddFileActions();
         setJMenuBar(menuBar.getMenuBar());
         setLayout(new FlowLayout());
@@ -28,23 +28,22 @@ public class Home extends JFrame{
     }
     
     public static void main(String[] args){
-        NoteList noteList = new NoteList();
-        Home HomeScreen = new Home(null, noteList);
+        Home HomeScreen = new Home();
     }
 
-    public void run(){
-        Home home = new Home(this,null);
-    }
+    // public void run(){
+    //     Home home = new Home(this,null);
+    // }
 
     public void AddFileActions(){
-        FileItemAction actions = new FileItemAction(this, menuBar.getMenuBar().getMenu(0));
+        FileItemAction actions = new FileItemAction(this, getMenuItem(0, 0));
         ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(0)).addActionListener(actions);
 
         // CloseNoteAction closeNote = new CloseNoteAction(this, menuBar.getMenuBar().getMenu(0));
         // ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(2)).addActionListener(closeNote);
 
         SaveButtonAction saveNote = new SaveButtonAction(this, menuBar.getMenuBar().getMenu(0));
-        // ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(1)).addActionListener(saveNote);
+        ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(2)).addActionListener(saveNote);
     }
 
     public void AddViewActions(){

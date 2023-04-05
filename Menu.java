@@ -34,14 +34,16 @@ public class Menu{
         fileMenu.add(newNote);
         fileMenu.addSeparator();
 
+        fileMenu.add(saveFile);
+        fileMenu.addSeparator();
+
         fileMenu.add(openNote);
         fileMenu.addSeparator();
 
         fileMenu.add(closeNote);
         fileMenu.addSeparator();
 
-        fileMenu.add(saveFile);
-        fileMenu.addSeparator();
+        
 
         fileMenu.add(deleteNote);
         fileMenu.addSeparator();

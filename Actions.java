@@ -16,7 +16,7 @@ class FileItemAction implements ActionListener{
     private Home home;
     private NoteList notesList;
 
-    public FileItemAction (JFrame frame , JMenuItem item){
+    public FileItemAction (Home home, JMenuItem item){
         this.item = item;
         item.addActionListener(this);
         this.home = home;
@@ -27,11 +27,12 @@ class FileItemAction implements ActionListener{
     public void actionPerformed(ActionEvent e){
        
         Note note = new Note();
+        notesList.addNote(note);
         if(note.getName()!=null){
-            notesList.addNote(note);
-            frame.setContentPane(note);
+            home.setContentPane(note);
         }
-        frame.pack();
+        home.pack();
+        System.out.println(notesList.size());
     }
 
 }
@@ -51,32 +52,31 @@ class SaveButtonAction implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        if (e.getSource() == item){
             String name = noteToSave.getName();
             String document = noteToSave.getNotePane().getText();
+            System.out.println(document);
             file.saveFile(name, document);
-        }
     }
 
 }
 
 
-// class CloseNoteAction implements ActionListener{
+class CloseNoteAction implements ActionListener{
 
-//     private JFrame frame;
-//     private JMenuItem item;
+    private JFrame frame;
+    private JMenuItem item;
 
-//     public CloseNoteAction (JFrame frame , JMenuItem item){
-//         this.item = item;
-//         item.addActionListener(this);
-//         this.frame = frame;
-//     }
+    public CloseNoteAction (JFrame frame , JMenuItem item){
+        this.item = item;
+        item.addActionListener(this);
+        this.frame = frame;
+    }
 
-//     public void actionPerformed(ActionEvent e){
-//         frame.setContentPane(new Home().getContentPane());
-//     }
+    public void actionPerformed(ActionEvent e){
+        frame.setContentPane(new Home().getContentPane());
+    }
 
-// }
+}
 
 // ```class DarkModeAction implements ActionListener{
 

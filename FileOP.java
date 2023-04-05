@@ -9,6 +9,7 @@ public class FileOP {
 
     public FileOP(){
         userDirectory = System.getProperty("user.home");
+        System.out.println(userDirectory);
         file = new File(userDirectory + "/Notes");
 
         if(!file.exists()){
