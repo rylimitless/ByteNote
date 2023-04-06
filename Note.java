@@ -8,7 +8,7 @@ public class Note extends Page{
     private String name;
     private String fileLocation;
     private Date dateCreated;
-    private JTextPane notePane;
+    private JTextArea noteArea;
     private JScrollPane scrollPane;
     
 
@@ -27,20 +27,31 @@ public class Note extends Page{
     public void render(){
         setMinimumSize(new Dimension(600, 500));
         setSize(800, 500);
-        notePane = new JTextPane();
-        notePane.setContentType("text/html");
-        HTMLDocument document = new HTMLDocument();
-        notePane.setDocument(document);
-        notePane.setText("      ");
-        notePane.setEditable(true);
-        notePane.setPreferredSize(new Dimension(600, 500));
-        scrollPane = new JScrollPane(notePane);
+        noteArea = new JTextArea();
+        // noteArea.setContentType("text/html");
+        noteArea.setText("      ");
+        noteArea.setEditable(true);
+        noteArea.setWrapStyleWord(true);
+        noteArea.setLineWrap(true);
+        noteArea.setPreferredSize(new Dimension(600, 500));
+        scrollPane = new JScrollPane(noteArea);
         add(scrollPane, BorderLayout.CENTER);
         setVisible(true);
     }
 
-    public JTextPane getNotePane(){
-        return notePane;
+    // public JTextP getNotePane(){
+    //     return notePane;
+    // }
+
+    public void setName(String name){
+        this.name = name;
     }
 
+    public String getDateString(){
+        return dateCreated.toString();
+    }
+
+    public String getNoteText(){
+        return noteArea.getText();
+    }
 }

@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Vector.*;
+import java.io.*;
 
 public class Home extends JFrame{
 
@@ -12,11 +12,13 @@ public class Home extends JFrame{
     private Deque<Note> prevNotes = new LinkedList<>();
     private ArrayList<Page> prevPages;
     private NoteList noteList;
+    private Views view;
 
     public Home(){
         super("ByteNote");
         setMinimumSize(new Dimension(800, 500));
         setSize(800, 500);
+        view = new Views(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menuBar = new Menu();
         this.noteList = new NoteList();
@@ -24,16 +26,16 @@ public class Home extends JFrame{
         setJMenuBar(menuBar.getMenuBar());
         setLayout(new FlowLayout());
         setBackground(Color.green);
+        setContentPane(view);
         setVisible(true);
+
     }
     
     public static void main(String[] args){
         Home HomeScreen = new Home();
     }
 
-    // public void run(){
-    //     Home home = new Home(this,null);
-    // }
+
 
     public void AddFileActions(){
         FileItemAction actions = new FileItemAction(this, getMenuItem(0, 0));
@@ -48,7 +50,8 @@ public class Home extends JFrame{
 
     public void AddViewActions(){
         // ViewItemAction actions = new ViewItemAction(this, menuBar.getMenuBar().getMenu(1));
-        //((JMenuItem) menuBar.getMenuBar().getMenu(1).getMenuComponent(0)).addActionListener(actions);
+        // ((JMenuItem)
+        // menuBar.getMenuBar().getMenu(1).getMenuComponent(0)).addActionListener(actions);
     }
 
     public NoteList getNoteList(){
@@ -58,5 +61,12 @@ public class Home extends JFrame{
     public JMenuItem getMenuItem(int menu, int item){
         return (JMenuItem) menuBar.getMenuBar().getMenu(menu).getMenuComponent(item);
     }
+
+    public ArrayList<Note> getNotes(){
+        return notes;
+    }
     
+    public void updateNotes(ArrayList<Note> noteL){
+        notes = noteL;
+    }
 }
