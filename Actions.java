@@ -3,6 +3,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * This actions file is used to handle all the actions in the application
+ * spend some time to understand how it works
+ * so you can impoement the edit options.
+ */
 
 class FileItemAction implements ActionListener{
 
@@ -13,7 +18,6 @@ class FileItemAction implements ActionListener{
 
     public FileItemAction (Home home, JMenuItem item){
         this.item = item;
-        item.addActionListener(this);
         this.home = home;
         this.notesList = home.getNotes();
     
@@ -24,10 +28,10 @@ class FileItemAction implements ActionListener{
         Note note = new Note();
         note.setName(JOptionPane.showInputDialog("Enter Note Name: "));
         if(note.getName()!=null){
-            System.out.println(note.getName());
             notesList.add(note);
             note.render();
-            home.setContentPane(note);
+            home.getContentPane().removeAll();
+            home.setContentPane(note.getContentPane());
         }
         home.pack();
     }

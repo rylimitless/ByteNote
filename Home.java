@@ -39,7 +39,16 @@ public class Home extends JFrame{
 
 
 
+    //this edit method hould look like this, 
+    // and be called from the home constructor.
+
+    
     public void AddFileActions(){
+
+        // this part of the code is for the File Menu, it adds the action listener to the menu items
+        // notice how the file menu part is getMenu(0) , for edit it would be getMenu(1) , and notice how the menu items are
+        // getComponent(0) , getComponent(2) and 6 , it's because they count by two , startting from 0
+
         FileItemAction actions = new FileItemAction(this, getMenuItem(0, 0));
         ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(0)).addActionListener(actions);
 

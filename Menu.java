@@ -53,6 +53,9 @@ public class Menu{
         menuBar.add(fileMenu);
     }
 
+
+    //This is the menu you'll be implementing functionality 
+    //behind.
     private void createEditMenu(){
 
         final JMenuItem cut = new JMenuItem("Cut");
