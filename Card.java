@@ -1,23 +1,30 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class Card extends JPanel implements ActionListener{
+public class Card extends JPanel{
     
-    public Card(String name){
+    private String name;
+    private JButton button;
 
+    public Card(String name){
+        this.name = name;
+        // add(new JLabel("Hey"));
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(100,100));
         setBackground(Color.blue);
         setOpaque(true);
-        JButton button = new JButton(name);
+        button = new JButton(name);
+        button.setVisible(true);
         add(button, BorderLayout.CENTER);
-        button.addActionListener(this);
-
+        setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e){
-        System.out.println("Hello");
+
+    public String getName(){
+        return name;
+    }
+
+    public JButton getButton(){
+        return button;
     }
 }
