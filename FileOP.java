@@ -58,7 +58,6 @@ public class FileOP {
         for(File file: files){
             Card card = new Card(file.getName().split(".txt")[0]);
             Note note  = new Note();
-            // note.render();
             note.setName(file.getName().split(".txt")[0]);
             note.getNoteArea().setText(fileReader(file));
             notes.add(note);
@@ -67,14 +66,28 @@ public class FileOP {
 
     }
 
-    private Note createNoteFromFile(File file){
+    public void deleteFile(String name){
+        try{
+            File file = new File(fileFolder + "/" + name + ".txt");
+            if(file.exists())
+                file.delete();
+            else 
+                JOptionPane.showMessageDialog(null, "File does not exist", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Failed to delete file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-        Note note = new Note();
-        note.setName(file.getName().split(".txt")[0]);
-        note.setNoteText(file.toString());
 
-        return note;
     }
+    // private Note createNoteFromFile(File file){
+
+    //     Note note = new Note();
+    //     note.setName(file.getName().split(".txt")[0]);
+    //     note.setNoteText(file.toString());
+
+    //     return note;
+    // }
 
     private String fileReader(File file){
         Scanner scan=null;
@@ -89,10 +102,10 @@ public class FileOP {
             JOptionPane.showMessageDialog(null, "Failed to read file", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        // finally{
-        //     if(scan!=null)
-        //     scan.close();
-        // }
+        finally{
+            if(scan!=null)
+            scan.close();
+        }
         return content;
 
 

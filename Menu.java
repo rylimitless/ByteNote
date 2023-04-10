@@ -19,10 +19,8 @@ public class Menu{
 
     private void createFileMenu(){
 
-        // final JMenuItem newFile = new JMenuItem("New");
         final JMenuItem newNote = new JMenuItem("New Note   Ctrl+N");
         final JMenuItem closeNote = new JMenuItem("Close Note");
-        final  JMenuItem openNote = new JMenuItem("Open Note ");
         final JMenuItem  openFolder = new JMenuItem("Open Folder   Ctrl+O");
         final JMenuItem  closeFolder = new JMenuItem("Close Folder   Ctrl+W");
         final JMenuItem  deleteNote = new JMenuItem("Delete Note      Ctrl+D");
@@ -34,8 +32,6 @@ public class Menu{
         fileMenu.add(saveFile);
         fileMenu.addSeparator();
 
-        fileMenu.add(openNote);
-        fileMenu.addSeparator();
 
         fileMenu.add(closeNote);
         fileMenu.addSeparator();
@@ -55,7 +51,6 @@ public class Menu{
 
 
     //This is the menu you'll be implementing functionality 
-    //behind.
     private void createEditMenu(){
 
         final JMenuItem cut = new JMenuItem("Cut");

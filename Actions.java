@@ -2,6 +2,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Collections;
 
 /**
  * This actions file is used to handle all the actions in the application
@@ -11,13 +14,10 @@ import java.util.ArrayList;
 
 class FileItemAction implements ActionListener{
 
-    private JFrame frame;
-    private JMenuItem item;
     private Home home;
     private ArrayList<Note> notesList;
 
-    public FileItemAction (Home home, JMenuItem item){
-        this.item = item;
+    public FileItemAction (Home home){
         this.home = home;
         this.notesList = home.getNotes();
     
@@ -42,27 +42,30 @@ class SaveButtonAction implements ActionListener{
 
     private FileOP file = new FileOP();
     private Home home;
-    private JMenuItem item;
 
-    public SaveButtonAction (Home home , JMenuItem item){
-        this.item = item;
-        item.addActionListener(this);
+    public SaveButtonAction (Home home){
         this.home = home;
     }
 
     public void actionPerformed(ActionEvent e){
 
             for(Note note: home.getNotes()){
+                home.getNotes().add(note);
                 file.saveFile(note.getName(),note.getNoteText());
             }
+            
+        home.setContentPane(home.getView());
+        home.getView().repaint();
+        home.pack();
+
     }
+
 }
 
 
 class CloseNoteAction implements ActionListener{
 
     private Home frame;
-    private JMenuItem item;
 
     public CloseNoteAction (Home frame){
         this.frame = frame;
@@ -70,6 +73,8 @@ class CloseNoteAction implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         frame.setContentPane(frame.getView());
+        frame.getView().repaint();
+        frame.pack();
     }
 
 }
@@ -87,21 +92,18 @@ class CardAction implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        System.out.println(notes.size());
         for(Note note: notes){
             if(note!=null && note.getName()!=null){
                 if(note.getName().equals(card.getName())){
-                    // System.out.println(note.getNoteText());
+    
                     note.render();
-                    // System.out.println("Hello"+note.getNoteText());
+                
                     home.setContentPane(note.getContentPane());
                     home.pack();
                 }
             }
             
         }
-        // System.out.print(n);
-
 
     }
 
@@ -110,36 +112,79 @@ class CardAction implements ActionListener{
 class DeleteNoteAction implements ActionListener{
 
     private Home home;
-    private Note note;
     private ArrayList<Note> notes;
     private ArrayList<Card> cards;
+    private String noteToDelete;
+    private FileOP fileOp;
 
-    public DeleteNoteAction (ArrayList<Note> notes, ArrayList<Card> cards, Note note, Home home){
-        this.note = note;
-        this.notes = notes;
+    public DeleteNoteAction (ArrayList<Card> cards, Home home){
+        // this.note = note;
+        this.notes = home.getNotes();
         this.cards = cards;
         this.home = home;
+        fileOp = new FileOP();
+
+        // noteList = new JComboBox<>(notes.toArray(new String[0]));
+
     }
 
     public void actionPerformed(ActionEvent e){
+        noteToDelete =JOptionPane.showInputDialog("", "Enter Note Name:");
         for(Note n: notes){
             if(n!=null && n.getName()!=null){
-                if(n.getName().equals(note.getName())){
+                if(n.getName().equals(noteToDelete)){
                     notes.remove(n);
+                    fileOp.deleteFile(noteToDelete);
+
                     break;
                 }
             }
         }
         for(Card c: cards){
             if(c!=null && c.getName()!=null){
-                if(c.getName().equals(note.getName())){
+                if(c.getName().equals(noteToDelete)){
                     cards.remove(c);
                     break;
                 }
             }
         }
+        home.getView().removeAll();
+        home.getView().addCards(home.getCard());
         home.setContentPane(home.getView());
         home.pack();
     }
 
+}
+
+class sortByName implements Comparator<Card>{
+
+    public int compare(Card a, Card b){
+        return a.getName().compareTo(b.getName());
+    }
+
+}
+
+// class sortByDate implements Comparator<Note>{
+
+//     public int compare(Note a, Note b){
+//         return a.getDate().compareTo(b.getDate());
+//     }
+
+// }
+
+class SortByNameButtonAction implements ActionListener{
+
+    private Home home;
+
+    public SortByNameButtonAction(Home home){
+        this.home = home;
+    }
+
+    public void actionPerformed(ActionEvent e){
+        Collections.sort(home.getCard(), new sortByName());
+        home.getView().removeAll();
+        home.getView().addCards(home.getCard());
+        home.setContentPane(home.getView());
+        home.pack();
+    }
 }

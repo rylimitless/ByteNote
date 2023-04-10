@@ -42,6 +42,10 @@ public class Views extends JPanel{
         }
     }
 
+    public ArrayList<Card> getCards(){
+        return cards;
+    }
+
 }
 
 

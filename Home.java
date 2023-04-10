@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.UIManager;
 
 public class Home extends JFrame{
 
@@ -24,7 +27,11 @@ public class Home extends JFrame{
         view.addCards(card);
         menuBar = new Menu();
         this.noteList = new NoteList();
+        //Adding actions
+
         AddFileActions();
+        AddViewActions();
+
         setJMenuBar(menuBar.getMenuBar());
         setLayout(new FlowLayout());
         setContentPane(view);
@@ -42,27 +49,44 @@ public class Home extends JFrame{
     //this edit method hould look like this, 
     // and be called from the home constructor.
 
-    
+
     public void AddFileActions(){
 
         // this part of the code is for the File Menu, it adds the action listener to the menu items
         // notice how the file menu part is getMenu(0) , for edit it would be getMenu(1) , and notice how the menu items are
         // getComponent(0) , getComponent(2) and 6 , it's because they count by two , startting from 0
 
-        FileItemAction actions = new FileItemAction(this, getMenuItem(0, 0));
-        ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(0)).addActionListener(actions);
+        FileItemAction actions = new FileItemAction(this);
+        getMenuItem(0, 0).addActionListener(actions);
 
         CloseNoteAction closeNote = new CloseNoteAction(this);
-        ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(6)).addActionListener(closeNote);
+        getMenuItem(0,4).addActionListener(closeNote);
 
-        SaveButtonAction saveNote = new SaveButtonAction(this, menuBar.getMenuBar().getMenu(0));
-        ((JMenuItem) menuBar.getMenuBar().getMenu(0).getMenuComponent(2)).addActionListener(saveNote);
+        SaveButtonAction saveNote = new SaveButtonAction(this);
+        getMenuItem(0,2).addActionListener(saveNote);
+
+        DeleteNoteAction deleteNote = new DeleteNoteAction(card, this);
+        getMenuItem(0, 6).addActionListener(deleteNote);
     }
 
     public void AddViewActions(){
         // ViewItemAction actions = new ViewItemAction(this, menuBar.getMenuBar().getMenu(1));
         // ((JMenuItem)
         // menuBar.getMenuBar().getMenu(1).getMenuComponent(0)).addActionListener(actions);
+        SortByNameButtonAction sortByName = new SortByNameButtonAction(this);
+        getMenuItem(2,2).addActionListener(sortByName);
+
+        //Dark Mode 
+        getMenuItem(2, 6).addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+                try {
+                    UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+                    view.repaint();
+                } catch (Exception ex) {
+
+                }
+            }
+        });
     }
 
     public NoteList getNoteList(){
@@ -83,5 +107,9 @@ public class Home extends JFrame{
 
     public Views getView(){
         return view;
+    }
+
+    public ArrayList<Card> getCard(){
+        return card;
     }
 }
