@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 
 
-//this is the note class that you'll need
 public class Note extends JFrame{
 
     private String name;
     private Date dateCreated;
     private JTextArea noteArea;
     private JScrollPane scrollPane;
+    private String noteString="";
     
 
     public Note() {
@@ -21,8 +21,7 @@ public class Note extends JFrame{
     public void render(){
     
         setSize(600, 500);
-        // noteArea.setContentType("text/html");
-        // noteArea.setText("      ");
+        noteArea.setText(noteString);
         noteArea.setEditable(true);
         noteArea.setWrapStyleWord(true);
         noteArea.setLineWrap(true);
@@ -31,10 +30,14 @@ public class Note extends JFrame{
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(600, 500));
 
-        add(scrollPane, BorderLayout.CENTER);
+        add(scrollPane);
     }
 
 
+    public JScrollPane getScrollPane(){
+        return scrollPane;
+    }
+    
     public void setName(String name){
         this.name = name;
     }
@@ -48,7 +51,8 @@ public class Note extends JFrame{
     }
 
     public void setNoteText(String text){
-        noteArea.setText(text);
+        if(noteString.equals(""))
+            noteArea.setText(text);
     }
 
     public JTextArea getNoteArea(){
@@ -58,5 +62,11 @@ public class Note extends JFrame{
     public String getName(){
         return name;
     }
+
+    public void setNoteString(String text){
+        noteString = text;
+    }
+
+    
 
 }

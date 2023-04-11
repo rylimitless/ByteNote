@@ -11,13 +11,13 @@ public class Home extends JFrame{
     private ArrayList<Note> notes = new ArrayList<>();
     private ArrayList<Card> card = new ArrayList<>();
 
-    private NoteList noteList;
     private Views view;
 
 
     public Home(){
         super("ByteNote");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultLookAndFeelDecorated(rootPaneCheckingEnabled);
         setMinimumSize(new Dimension(800, 500));
         setSize(800, 500);
         view = new Views(this);
@@ -26,7 +26,7 @@ public class Home extends JFrame{
         file.readFile(notes,card);
         view.addCards(card);
         menuBar = new Menu();
-        this.noteList = new NoteList();
+   
         //Adding actions
 
         AddFileActions();
@@ -41,20 +41,10 @@ public class Home extends JFrame{
     
     public static void main(String[] args){
         Home HomeScreen = new Home();
-        // sSystem.out.println(HomeScreen.getNotes().get(0).getNoteText()+"\t" + HomeScreen.getNotes().get(0).getName());
     }
 
 
-
-    //this edit method hould look like this, 
-    // and be called from the home constructor.
-
-
     public void AddFileActions(){
-
-        // this part of the code is for the File Menu, it adds the action listener to the menu items
-        // notice how the file menu part is getMenu(0) , for edit it would be getMenu(1) , and notice how the menu items are
-        // getComponent(0) , getComponent(2) and 6 , it's because they count by two , startting from 0
 
         FileItemAction actions = new FileItemAction(this);
         getMenuItem(0, 0).addActionListener(actions);
@@ -76,6 +66,11 @@ public class Home extends JFrame{
         SortByNameButtonAction sortByName = new SortByNameButtonAction(this);
         getMenuItem(2,2).addActionListener(sortByName);
 
+        SortByNameDesc sortByNameDesc = new SortByNameDesc(this);
+        getMenuItem(2,4).addActionListener(sortByNameDesc);
+
+        ToggleView toggleView = new ToggleView(this);
+        getMenuItem(2,0).addActionListener(toggleView);
         //Dark Mode 
         getMenuItem(2, 6).addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e) {
@@ -89,9 +84,6 @@ public class Home extends JFrame{
         });
     }
 
-    public NoteList getNoteList(){
-        return noteList;
-    }
 
     public JMenuItem getMenuItem(int menu, int item){
         return (JMenuItem) menuBar.getMenuBar().getMenu(menu).getMenuComponent(item);

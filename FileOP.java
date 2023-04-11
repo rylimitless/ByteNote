@@ -59,6 +59,7 @@ public class FileOP {
             Card card = new Card(file.getName().split(".txt")[0]);
             Note note  = new Note();
             note.setName(file.getName().split(".txt")[0]);
+            note.setNoteString(fileReader(file));
             note.getNoteArea().setText(fileReader(file));
             notes.add(note);
             cards.add(card);
@@ -80,14 +81,6 @@ public class FileOP {
 
 
     }
-    // private Note createNoteFromFile(File file){
-
-    //     Note note = new Note();
-    //     note.setName(file.getName().split(".txt")[0]);
-    //     note.setNoteText(file.toString());
-
-    //     return note;
-    // }
 
     private String fileReader(File file){
         Scanner scan=null;

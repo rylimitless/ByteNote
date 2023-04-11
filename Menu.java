@@ -80,9 +80,9 @@ public class Menu{
     private void createViewMenu(){
 
         final JMenuItem toggleView = new JMenuItem("Toggle View");
-        final JMenuItem sortByName = new JMenuItem("Sort By Name");
-        final JMenuItem sortByDate = new JMenuItem("Sort By Date Modified");
-        final JMenuItem darkMode = new JMenuItem("Dark Mode");
+        final JMenuItem sortByName = new JMenuItem("Sort By Name Ascending");
+        final JMenuItem sortByNameD = new JMenuItem("Sort By Name Descending");
+        final JMenuItem darkMode = new JMenuItem("Change Theme");
 
         viewMenu.add(toggleView);
         viewMenu.addSeparator();
@@ -90,7 +90,7 @@ public class Menu{
         viewMenu.add(sortByName);
         viewMenu.addSeparator();
 
-        viewMenu.add(sortByDate);
+        viewMenu.add(sortByNameD);
         viewMenu.addSeparator();
 
         viewMenu.add(darkMode);

@@ -24,6 +24,9 @@ public class FileItemAction implements ActionListener{
                 home.getContentPane().removeAll();
                 home.setContentPane(note.getContentPane());
             }
+            else{
+                home.setContentPane(home.getView());
+            }
             home.pack();
         }
     

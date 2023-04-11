@@ -6,6 +6,7 @@ public class Views extends JPanel{
     
     private Home frame;
     private ArrayList<Card> cards;
+    private String layout="flow";
 
     public Views(Home frame){
         this.frame = frame;
@@ -15,8 +16,7 @@ public class Views extends JPanel{
 
     private void render(){
 
-        // add(new JLabel("Notes"), BorderLayout.SOUTH);
-        setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
+        setLayout(new FlowLayout(FlowLayout.CENTER,20,20));
         setVisible(true);
 
 
@@ -25,12 +25,8 @@ public class Views extends JPanel{
           }
   
         JScrollPane scrollPane = new JScrollPane(this);
-        // panel.setVisible(true);
         scrollPane.setVisible(true);
-        // add(panel);
-        // scrollPane.setPreferredSize(new Dimension(600, 400));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        // frame.add(scrollPane);
         frame.pack();
 
     }
@@ -46,6 +42,13 @@ public class Views extends JPanel{
         return cards;
     }
 
+    public String getCLayout(){
+        return layout;
+    }
+
+    public void setCLayout(String layout){
+        this.layout = layout;
+    }
 }
 
 
