@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.undo.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Menu{
     private JMenuBar menuBar = new JMenuBar();
@@ -6,6 +9,8 @@ public class Menu{
     private JMenu editMenu = new JMenu("Edit    ");
     private JMenu viewMenu = new JMenu("View    ");
     private JMenu helpMenu = new JMenu("Help    ");
+
+    private UndoManager undoManager;
 
     
     public Menu(){
@@ -19,12 +24,11 @@ public class Menu{
 
     private void createFileMenu(){
 
-        final JMenuItem newNote = new JMenuItem("New Note   Ctrl+N");
+        final JMenuItem newNote = new JMenuItem("New Note");
         final JMenuItem closeNote = new JMenuItem("Close Note");
-        final JMenuItem  openFolder = new JMenuItem("Open Folder   Ctrl+O");
-        final JMenuItem  closeFolder = new JMenuItem("Close Folder   Ctrl+W");
-        final JMenuItem  deleteNote = new JMenuItem("Delete Note      Ctrl+D");
-        final  JMenuItem saveFile = new JMenuItem("Save   Ctrl+S");
+        final JMenuItem  deleteNote = new JMenuItem("Delete Note ");
+        final JMenuItem exit = new JMenuItem("Exit");
+        final  JMenuItem saveFile = new JMenuItem("Save");
         
         fileMenu.add(newNote);
         fileMenu.addSeparator();
@@ -36,15 +40,16 @@ public class Menu{
         fileMenu.add(closeNote);
         fileMenu.addSeparator();
 
-        
-
         fileMenu.add(deleteNote);
         fileMenu.addSeparator();
-
-        fileMenu.add(openFolder);
-        fileMenu.addSeparator();
-
-        fileMenu.add(closeFolder);
+        
+        fileMenu.add(exit);
+        exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        
 
         menuBar.add(fileMenu);
     }
@@ -53,16 +58,22 @@ public class Menu{
     //This is the menu you'll be implementing functionality 
     private void createEditMenu(){
 
-        final JMenuItem cut = new JMenuItem("Cut");
-        final JMenuItem copy = new JMenuItem("Copy");
-        final JMenuItem paste = new JMenuItem("Paste");
-        final JMenuItem undo  = new JMenuItem("Undo");
-        final JMenuItem redo = new JMenuItem("Redo");
+        final JMenuItem cut = new JMenuItem("Cut (crl+x)");
+        final JMenuItem copy = new JMenuItem("Copy (crl+c)");
+        final JMenuItem paste = new JMenuItem("Paste (crl+v)");
+        final JMenuItem undo  = new JMenuItem("Undo (crl+z)");
+        final JMenuItem redo = new JMenuItem("Redo (crl+y)");
 
         editMenu.add(undo);
         editMenu.addSeparator();
 
         editMenu.add(redo);
+        redo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                undoManager.redo();
+            }
+        });
+
         editMenu.addSeparator();
 
         editMenu.add(cut);

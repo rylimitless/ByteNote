@@ -60,9 +60,7 @@ public class Home extends JFrame{
     }
 
     public void AddViewActions(){
-        // ViewItemAction actions = new ViewItemAction(this, menuBar.getMenuBar().getMenu(1));
-        // ((JMenuItem)
-        // menuBar.getMenuBar().getMenu(1).getMenuComponent(0)).addActionListener(actions);
+
         SortByNameButtonAction sortByName = new SortByNameButtonAction(this);
         getMenuItem(2,2).addActionListener(sortByName);
 
@@ -83,7 +81,6 @@ public class Home extends JFrame{
             }
         });
     }
-
 
     public JMenuItem getMenuItem(int menu, int item){
         return (JMenuItem) menuBar.getMenuBar().getMenu(menu).getMenuComponent(item);

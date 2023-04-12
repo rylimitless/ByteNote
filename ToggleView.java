@@ -16,7 +16,7 @@ public class ToggleView implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(home.getView().getCLayout().equals("flow")){
                 home.getView().setCLayout("grid");
-                home.getView().setLayout(new GridLayout(2,3));
+                home.getView().setLayout(new GridLayout(0, 2, 20, 20));
                 home.getView().repaint();
             }
             else{
