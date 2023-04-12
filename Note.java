@@ -15,21 +15,20 @@ public class Note extends JFrame{
         super("Note");
         dateCreated = new Date();
         noteArea = new JTextArea();
+        scrollPane = new JScrollPane(noteArea);
     }
 
 
     public void render(){
     
         setSize(600, 500);
-        noteArea.setText(noteString);
         noteArea.setEditable(true);
         noteArea.setWrapStyleWord(true);
         noteArea.setLineWrap(true);
-        scrollPane = new JScrollPane(noteArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setPreferredSize(new Dimension(600, 500));
-
+        scrollPane.setVisible(true);
         add(scrollPane);
     }
 
@@ -66,7 +65,5 @@ public class Note extends JFrame{
     public void setNoteString(String text){
         noteString = text;
     }
-
-    
 
 }

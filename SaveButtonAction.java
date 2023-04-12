@@ -13,15 +13,9 @@ class SaveButtonAction implements ActionListener{
     public void actionPerformed(ActionEvent e){
 
             for(Note note: home.getNotes()){
-                // home.getNotes().add(note);
                 file.saveFile(note.getName(),note.getNoteText());
             }
             
-        // home.setContentPane(home.getView());
-        // home.getView().removeAll();
-        // home.getView().addCards(home.getCard());
-        // home.pack();
-
     }
 
 }

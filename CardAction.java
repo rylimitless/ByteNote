@@ -20,9 +20,6 @@ class CardAction implements ActionListener{
             if(note!=null && note.getName()!=null){
                 if(note.getName().equals(card.getName())){
                     note.render();
-                    note.getScrollPane().remove(note.getNoteArea());
-                    note.getNoteArea().setText(note.getNoteText());
-                    note.getScrollPane().add(note.getNoteArea());
                     home.setContentPane(note.getContentPane());
                     home.pack();
                 }
